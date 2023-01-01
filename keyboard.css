@@ -1,0 +1,6 @@
+#keyboard {
+    display: grid;
+    grid-template-columns: repeat(12, min-content);
+    justify-content: center;
+    /* background-color: rgb(161, 218, 139); */
+}
