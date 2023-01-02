@@ -1,8 +1,14 @@
+//varijable
 let listOfRows = [];
 let rowNumber = 0;
 const abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";
 let string = "";
 let win;
+
+//boje
+const green = "#1eb042";
+const darkGray = "#707070";
+const orange = "#deaa1b";
 
 //random broj od 0 do max
 function randomInt(max) {
@@ -73,19 +79,19 @@ function checkWord() {
                 if (mainWord[i] == string[i]) {
                     stringLetters[i] = "0";
                     mainWordLetters[i] = "1";
-                    listOfRows[rowNumber][i].style.background = "#1eb042";
+                    listOfRows[rowNumber][i].style.background = green;
                 } 
             } else {
-                listOfRows[rowNumber][i].style.background = "#707070";
+                listOfRows[rowNumber][i].style.background = darkGray;
             }
         }
         //provjera slova koja su prisutna, ali na različitom mjestu
         for (let i=0; i < 5; i++) {
             if (mainWordLetters.includes(stringLetters[i])) {
                 mainWordLetters[mainWordLetters.indexOf(stringLetters[i])] = "1";
-                listOfRows[rowNumber][i].style.background = "#deaa1b";
+                listOfRows[rowNumber][i].style.background = orange;
             } else if (stringLetters[i] !== "0"){
-                listOfRows[rowNumber][i].style.background = "#707070";
+                listOfRows[rowNumber][i].style.background = darkGray;
             }
         }
 
