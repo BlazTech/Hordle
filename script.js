@@ -1,8 +1,7 @@
-let lista_redova = [];
-let string = "";
-let brojReda = 0;
+let listOfRows = [];
+let rowNumber = 0;
 const abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";
-
+let string = "";
 let win;
 
 //random broj od 0 do max
@@ -10,45 +9,46 @@ function randomInt(max) {
     return Math.floor(Math.random() * (max + 1));
 }
 
-let glavnaRijec = rijeci[randomInt(rijeci.length - 1)];
+//odabir glavne riječi
+let mainWord = listOfWords[randomInt(listOfWords.length - 1)];
 
-//dodavanje kvadrata u listu
-let temp_lista = [];
+//dodavanje redova objekata kvadrata u listOfRows
+let tempList = [];
 for (let i=0; i < 30; i++ ) {
-    let kvadrat = document.querySelector("#c" + String(i));
-    temp_lista.push(kvadrat);
+    let square = document.querySelector("#c" + String(i));
+    tempList.push(square);
 
-    if (temp_lista.length >= 5) {
-        lista_redova.push(temp_lista);
-        temp_lista = [];
+    if (tempList.length >= 5) {
+        listOfRows.push(tempList);
+        tempList = [];
     }
 }
 
-//pregledavanje inputa
-function pregledInputa(event) {
-    let znak = event.key;
-    if (abc.includes(znak)) {
+//pregledavanje inputa, dodavanje slova u string i brisanje
+function inputCheck(event) {
+    let key = event.key;
+    if (abc.includes(key)) {
         if (string.length < 5) {
-            string += znak.toLowerCase();
+            string += key.toLowerCase();
             updateDisplay();
         }
-    } else if (znak == "Backspace") {
+    } else if (key == "Backspace") {
         string = string.slice(0, string.length - 1);
         updateDisplay();
-    } else if (znak == "Enter") {
+    } else if (key == "Enter") {
         if (string.length == 5) {
             checkWord();
         }
     }
 }
 
-//funkcija za obnavljanje ekrana
+//funkcija za obnavljanje slova u kvadratima
 function updateDisplay() {
     for (let i=0; i < 5; i++) {
         if (i < string.length) {
-            lista_redova[brojReda][i].innerText = string[i].toUpperCase();
+            listOfRows[rowNumber][i].innerText = string[i].toUpperCase();
         } else {
-            lista_redova[brojReda][i].innerText = "";
+            listOfRows[rowNumber][i].innerText = "";
         }
     }
 }
@@ -58,44 +58,41 @@ function alertWin() {
     alert("POBJEDA!" + "\nREFRESH ZA NOVU RIJEČ");
 }
 function alertLose() {
-    alert("IZGUBIO SI, GLAVNA RIJEČ JE " + glavnaRijec.toUpperCase() + "!" + "\nREFRESH ZA NOVU RIJEČ");
+    alert("IZGUBIO SI, GLAVNA RIJEČ JE " + mainWord.toUpperCase() + "!" + "\nREFRESH ZA NOVU RIJEČ");
 }
 
-//provjera rijeci
+//provjera rijeci, bojanje
 function checkWord() {
-    let slovaStringRijeci = string.split("");
-    let slovaGlavneRijeci = glavnaRijec.split("");
+    let stringLetters = string.split("");
+    let mainWordLetters = mainWord.split("");
 
-    if (rijeci.includes(string)) {
-        for (let i=0; i < string.length; i++) {
-            if (glavnaRijec.includes(string[i])) {
-                if (glavnaRijec[i] == string[i]) {
-
-                    slovaStringRijeci[i] = "0";
-                    slovaGlavneRijeci[i] = "1";
-
-                    lista_redova[brojReda][i].style.background = "#1eb042";
+    if (listOfWords.includes(string)) {
+        //provjera slova na istom mjestu i slova koja nedostaju
+        for (let i=0; i < 5; i++) {
+            if (mainWord.includes(string[i])) {
+                if (mainWord[i] == string[i]) {
+                    stringLetters[i] = "0";
+                    mainWordLetters[i] = "1";
+                    listOfRows[rowNumber][i].style.background = "#1eb042";
                 } 
             } else {
-                lista_redova[brojReda][i].style.background = "#707070";
+                listOfRows[rowNumber][i].style.background = "#707070";
+            }
+        }
+        //provjera slova koja su prisutna, ali na različitom mjestu
+        for (let i=0; i < 5; i++) {
+            if (mainWordLetters.includes(stringLetters[i])) {
+                mainWordLetters[mainWordLetters.indexOf(stringLetters[i])] = "1";
+                listOfRows[rowNumber][i].style.background = "#deaa1b";
+            } else if (stringLetters[i] !== "0"){
+                listOfRows[rowNumber][i].style.background = "#707070";
             }
         }
 
-        //console.log(slovaStringRijeci, slovaGlavneRijeci);
-
-        for (let i=0; i < slovaStringRijeci.length; i++) {
-            if (slovaGlavneRijeci.includes(slovaStringRijeci[i])) {
-                slovaGlavneRijeci[slovaGlavneRijeci.indexOf(slovaStringRijeci[i])] = "1";
-                lista_redova[brojReda][i].style.background = "#deaa1b";
-            } else if (slovaStringRijeci[i] !== "0"){
-                lista_redova[brojReda][i].style.background = "#707070";
-            }
-        }
-
-        brojReda += 1;
-        if (string == glavnaRijec) {
+        rowNumber += 1;
+        if (string == mainWord) {
             win = true;
-        } else if (brojReda > 5) {
+        } else if (rowNumber > 5) {
             win = false;
         }
 
@@ -111,4 +108,4 @@ function checkWord() {
     }
 }
 
-document.addEventListener("keydown", pregledInputa);
+document.addEventListener("keydown", inputCheck);
