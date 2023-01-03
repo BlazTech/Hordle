@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
 
+:root {
+    /* font colors */
+    --default-font-color:rgb(39, 39, 39);
+    --white-font-color:white;
+    /* container colors */
+    --dark-container-color:#2c2c2c;
+    
+    /* square default colors */
+    --square-default-color:rgb(228, 228, 228);
+    --square-border-color:rgba(128, 128, 128, 0.7);
+    /* square non default colors */
+    --square-dark-color:#707070;
+    --square-green-color:#1eb042;
+    --square-orange-color:#deaa1b;
+}
+
 *, ::before, ::after {
     box-sizing: border-box;
     margin: 0;
@@ -14,7 +30,7 @@ html {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 3.125rem;
-    color: rgb(39, 39, 39);
+    color: var(--default-font-color);
 }
 
 body {
@@ -24,8 +40,8 @@ body {
 }
 
 header h1 {
-    background-color: #2c2c2c;
-    color: white;
+    background-color: var(--dark-container-color);
+    color: var(--white-font-color);
     font-size: 1.5rem;
     text-align: center;
 }
@@ -45,14 +61,14 @@ header h1 {
     width: 63px;
     height: 63px;
 
-    background-color: rgb(228, 228, 228);
-    border: 2px solid rgba(128, 128, 128, 0.7);
+    background-color: var(--square-default-color);
+    border: 2px solid var(--square-border-color);
 }
 
 
 footer h2 {
-    background-color: #2c2c2c;
-    color: white;
+    background-color: var(--dark-container-color);
+    color: var(--white-font-color);
     font-size: 1rem;
     text-align: center;
 }
