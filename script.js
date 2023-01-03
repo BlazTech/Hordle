@@ -5,11 +5,6 @@ const abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";
 let string = "";
 let win;
 
-//boje
-const green = "#1eb042";
-const darkGray = "#707070";
-const orange = "#deaa1b";
-
 //random broj od 0 do max
 function randomInt(max) {
     return Math.floor(Math.random() * (max + 1));
@@ -27,24 +22,6 @@ for (let i=0; i < 30; i++ ) {
     if (tempList.length >= 5) {
         listOfRows.push(tempList);
         tempList = [];
-    }
-}
-
-//pregledavanje inputa, dodavanje slova u string i brisanje
-function inputCheck(event) {
-    let key = event.key;
-    if (abc.includes(key)) {
-        if (string.length < 5) {
-            string += key.toLowerCase();
-            updateDisplay();
-        }
-    } else if (key == "Backspace") {
-        string = string.slice(0, string.length - 1);
-        updateDisplay();
-    } else if (key == "Enter") {
-        if (string.length == 5) {
-            checkWord();
-        }
     }
 }
 
@@ -71,7 +48,7 @@ function alertLose() {
 function checkWord() {
     let stringLetters = string.split("");
     let mainWordLetters = mainWord.split("");
-
+    
     if (listOfWords.includes(string)) {
         //provjera slova na istom mjestu i slova koja nedostaju
         for (let i=0; i < 5; i++) {
@@ -94,23 +71,41 @@ function checkWord() {
                 listOfRows[rowNumber][i].style.background = darkGray;
             }
         }
-
+        
         rowNumber += 1;
         if (string == mainWord) {
             win = true;
         } else if (rowNumber > 5) {
             win = false;
         }
-
+        
         if (win) {
             setTimeout(alertWin, 300);
         } else if (win == false) {
             setTimeout(alertLose, 300);
         }
-
+        
         string = "";
     } else {
         alert("RIJEČ NIJE PRONAĐENA!");
+    }
+}
+
+//pregledavanje inputa, dodavanje slova u string i brisanje
+function inputCheck(event) {
+    let key = event.key;
+    if (abc.includes(key)) {
+        if (string.length < 5) {
+            string += key.toLowerCase();
+            updateDisplay();
+        }
+    } else if (key == "Backspace") {
+        string = string.slice(0, string.length - 1);
+        updateDisplay();
+    } else if (key == "Enter") {
+        if (string.length == 5) {
+            checkWord();
+        }
     }
 }
 
