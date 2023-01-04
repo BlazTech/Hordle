@@ -32,10 +32,10 @@ class Grid {
     }
 
     alertWin() {
-        alert("POBJEDA!" + "\nREFRESH ZA NOVU RIJEČ");
+        alert("POBJEDA!\n" + "REFRESH ZA NOVU RIJEČ");
     }
     alertLose() {
-        alert("IZGUBIO SI, GLAVNA RIJEČ JE " + this.mainWord.toUpperCase() + "!" + "\nREFRESH ZA NOVU RIJEČ");
+        alert("IZGUBIO SI, GLAVNA RIJEČ JE " + this.mainWord.toUpperCase() + "!\n" + "REFRESH ZA NOVU RIJEČ");
     }
 
     //provjera riječi i bojanje grida
