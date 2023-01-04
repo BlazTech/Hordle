@@ -7,7 +7,7 @@ class Grid {
         this.abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";
         this.state = "playing";
     }
-    
+    //dodavanje kvadrata u listu
     addSquareObjectsToList() {
         let tempList = [];
         for (let i=0; i < 30; i++ ) {
@@ -20,8 +20,8 @@ class Grid {
             }
         }        
     }
-
-    updateDisplay() {
+    //obnavljanje teksta u gridu
+    updateGridText() {
         for (let i=0; i < 5; i++) {
             if (i < this.string.length) {
                 this.listOfRows[this.rowNumber][i].innerText = this.string[i].toUpperCase();
@@ -38,6 +38,7 @@ class Grid {
         alert("IZGUBIO SI, GLAVNA RIJEČ JE " + this.mainWord.toUpperCase() + "!" + "\nREFRESH ZA NOVU RIJEČ");
     }
 
+    //provjera riječi i bojanje grida
     checkWord() {
         let stringLetters = this.string.split("");
         let mainWordLetters = this.mainWord.split("");
@@ -64,19 +65,19 @@ class Grid {
                     this.listOfRows[this.rowNumber][i].style.background = "#707070";
                 }
             }
-            
+            //provjera pobjede, gubitka
             this.rowNumber += 1;
             if (this.string == this.mainWord) {
                 this.state = "win";
             } else if (this.rowNumber > 5) {
                 this.state = "lose";
             }
-            
+            //slanje poruka za pobjedu, gubitak
             if (this.state == "win") {
-                var that = this;
+                let that = this;
                 setTimeout(() => {that.alertWin()} , 300);
             } else if (this.state == "lose") {
-                var that = this;
+                let that = this;
                 setTimeout(() => {that.alertLose()} , 300);
             }
             
@@ -85,17 +86,17 @@ class Grid {
             alert("RIJEČ NIJE PRONAĐENA!");
         }
     }
-
+    //provjera inputa
     inputCheck(event) {
         let key = event.key;
         if (this.abc.includes(key)) {
             if (this.string.length < 5) {
                 this.string += key.toLowerCase();
-                this.updateDisplay();
+                this.updateGridText();
             }
         } else if (key == "Backspace") {
             this.string = this.string.slice(0, this.string.length - 1);
-            this.updateDisplay();
+            this.updateGridText();
         } else if (key == "Enter") {
             if (this.string.length == 5) {
                 this.checkWord();
