@@ -1,5 +1,6 @@
 class Grid {
     constructor(mainWord) {
+        this.grid = document.getElementById("grid");
         this.mainWord = mainWord;
         this.string = "";
         this.listOfRows = [];
@@ -7,11 +8,14 @@ class Grid {
         this.abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";
         this.state = "playing";
     }
-    //dodavanje kvadrata u listu
-    addSquareObjectsToList() {
+    //pravljenje i dodavanje kvadrata u listu
+    createSquareObjects() {
         let tempList = [];
         for (let i=0; i < 30; i++ ) {
-            let square = document.querySelector("#c" + String(i));
+            const square = document.createElement("div");
+            square.id = "#s" + String(i);
+            square.classList.add("cell", "regularbox");
+            this.grid.append(square);
             tempList.push(square);
         
             if (tempList.length >= 5) {
@@ -114,7 +118,7 @@ function chooseMainWord() {
 }
 
 const grid = new Grid(chooseMainWord());
-grid.addSquareObjectsToList();
+grid.createSquareObjects();
 
 document.addEventListener("keydown", event => {
     grid.inputCheck(event);
