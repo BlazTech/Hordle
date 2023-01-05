@@ -15,6 +15,10 @@ class Grid {
             const square = document.createElement("div");
             square.id = "#s" + String(i);
             square.classList.add("cell", "regularbox");
+            const letterSquare = document.createElement("div");
+            letterSquare.id = "#l" + String(i);
+            letterSquare.className = "letter-square";
+            square.append(letterSquare);
             this.grid.append(square);
             tempList.push(square);
         
@@ -28,9 +32,11 @@ class Grid {
     updateGridText() {
         for (let i=0; i < 5; i++) {
             if (i < this.string.length) {
-                this.listOfRows[this.rowNumber][i].innerText = this.string[i].toUpperCase();
+                const child = this.listOfRows[this.rowNumber][i].querySelector(".letter-square");
+                child.innerText = this.string[i].toUpperCase();
             } else {
-                this.listOfRows[this.rowNumber][i].innerText = "";
+                const child = this.listOfRows[this.rowNumber][i].querySelector(".letter-square");
+                child.innerText = "";
             }
         }
     }
