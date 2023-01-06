@@ -93,6 +93,10 @@ main {
     border: 2px solid var(--square-border-color);
 }
 
+.darkgreybox {
+    background-color: var(--square-dark-color);
+    border: 2px solid var(--square-border-color);
+}
 
 
 
