@@ -1,4 +1,5 @@
-const keyboardElement = document.getElementById("keyboard");
+const keyboardDiv = document.getElementById("keyboard");
+let listOfKeyDivs = [];
 
 const keyboards = {
     "croatian": [
@@ -8,23 +9,29 @@ const keyboards = {
     ]
 } 
 
-function checkingInputs(letter) {
+
+function testCheckingInputs(letter) {
     console.log(letter);
 }
 
 function createKeyboard(language) {
-    keyboards[language].forEach(function(line){
-        line.split(" ").forEach(function(letter){
-            let div = document.createElement("div");
-            div.onclick = "checkingInputs(\"letter\")";
-            div.innerHTML = letter.toUpperCase();
-            div.style.minWidth = "63px";
-            div.style.height = "63px";
-            div.style.background = "steelblue";
-            div.style.border = "1px solid black";
-            div.style.cursor = "pointer";
+    keyboards[language].forEach(line => {
+        const keyboardRowDiv = document.createElement("div");
+        keyboardRowDiv.style.display = "flex";
+        keyboardRowDiv.className = "keyboard-row";
+        keyboardDiv.append(keyboardRowDiv);
 
-            keyboardElement.append(div);
+        line.split(" ").forEach(letter => {
+            const keyboardLetterDiv = document.createElement("div");
+            keyboardLetterDiv.innerHTML = letter.toUpperCase();
+            keyboardLetterDiv.style.textAlign = "center";
+            keyboardLetterDiv.style.minWidth = "63px";
+            keyboardLetterDiv.style.height = "63px";
+            keyboardLetterDiv.style.background = gray;
+            keyboardLetterDiv.style.border = "1px solid black";
+            keyboardLetterDiv.style.cursor = "pointer";
+            keyboardRowDiv.append(keyboardLetterDiv);
+            listOfKeyDivs.push(keyboardLetterDiv);   
         })
     });
 }
