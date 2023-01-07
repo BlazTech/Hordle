@@ -35,7 +35,6 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 header p {
@@ -48,8 +47,9 @@ header p {
 main {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
+    height: 100%;
 }
 
 #grid {
