@@ -1,32 +1,33 @@
-const keyboardElement = document.getElementById("keyboard");
-
-const keyboards = {
-    "croatian": [
-        "e r t z u i o p š đ",
-        "ž a s d f g h j k l č ⌫",
-        "ć c v b n m lj nj dž ↩",
-    ]
-} 
-
-function checkingInputs(letter) {
-    console.log(letter);
+class Keyboard {
+    constructor() {
+        this.keyboard = document.getElementById("keyboard");
+        this.listOfKeyDivs = [];
+        this.keyboardLanguages = {
+            "croatian": [
+                "e r t z u i o p š đ",
+                "ž a s d f g h j k l č ⌫",
+                "ć c v b n m lj nj dž ↩"
+            ]
+        } 
+    }
+    createKeyboard(language) {
+        this.keyboardLanguages[language].forEach(line => {
+            const rowDiv = document.createElement("div");
+            rowDiv.className = "keyboard-row";
+            this.keyboard.append(rowDiv);
+    
+            line.split(" ").forEach(letter => {
+                const square = document.createElement("div");
+                square.classList.add("cell", "regularbox");
+                const letterSquare = document.createElement("div");
+                letterSquare.className = "letter-square";
+                letterSquare.innerText = letter.toUpperCase();
+                square.append(letterSquare);
+                rowDiv.append(square);
+            });
+        });
+    }
 }
 
-function createKeyboard(language) {
-    keyboards[language].forEach(function(line){
-        line.split(" ").forEach(function(letter){
-            let div = document.createElement("div");
-            div.onclick = "checkingInputs(\"letter\")";
-            div.innerHTML = letter.toUpperCase();
-            div.style.minWidth = "63px";
-            div.style.height = "63px";
-            div.style.background = "steelblue";
-            div.style.border = "1px solid black";
-            div.style.cursor = "pointer";
-
-            keyboardElement.append(div);
-        })
-    });
-}
-
-createKeyboard("croatian");
+const keyboard = new Keyboard();
+keyboard.createKeyboard("croatian");

@@ -60,19 +60,23 @@ class Grid {
                     if (this.mainWord[i] == this.string[i]) {
                         stringLetters[i] = "0";
                         mainWordLetters[i] = "1";
-                        this.listOfRows[this.rowNumber][i].style.background = "#1eb042";
-                    } 
+                        this.listOfRows[this.rowNumber][i].classList.remove("regularbox");
+                        this.listOfRows[this.rowNumber][i].classList.add("greenbox");
+                    }   
                 } else {
-                    this.listOfRows[this.rowNumber][i].style.background = "#707070";
+                    this.listOfRows[this.rowNumber][i].classList.remove("regularbox");
+                    this.listOfRows[this.rowNumber][i].classList.add("darkgreybox");
                 }
-            }
+            } 
             //provjera slova koja su prisutna, ali na različitom mjestu
             for (let i=0; i < 5; i++) {
                 if (mainWordLetters.includes(stringLetters[i])) {
                     mainWordLetters[mainWordLetters.indexOf(stringLetters[i])] = "1";
-                    this.listOfRows[this.rowNumber][i].style.background = "#deaa1b";
+                    this.listOfRows[this.rowNumber][i].classList.remove("regularbox");
+                    this.listOfRows[this.rowNumber][i].classList.add("orangebox");
                 } else if (stringLetters[i] !== "0"){
-                    this.listOfRows[this.rowNumber][i].style.background = "#707070";
+                    this.listOfRows[this.rowNumber][i].classList.remove("regularbox");
+                    this.listOfRows[this.rowNumber][i].classList.add("darkgreybox");
                 }
             }
             //provjera pobjede, gubitka

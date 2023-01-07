@@ -1,6 +1,12 @@
 #keyboard {
-    display: grid;
-    grid-template-columns: repeat(12, min-content);
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    /* background-color: rgb(161, 218, 139); */
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 0.1rem;
 }
