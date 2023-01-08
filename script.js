@@ -1,6 +1,6 @@
 class Grid {
     constructor() {
-        this.grid = document.getElementById("grid");
+        this.grid = document.querySelector("#grid");
         this.listOfRows = [];
     }
     //pravljenje i dodavanje kvadrata u listu
