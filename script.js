@@ -5,6 +5,8 @@ class Grid {
     }
     //pravljenje i dodavanje kvadrata u listu
     createSquareObjects(rowNumber, columnNumber) {
+        this.grid.style.gridTemplateColumns = "repeat(" + String(columnNumber) + ", 1fr)";
+
         let tempList = [];
         for (let i=0; i < (rowNumber * columnNumber); i++ ) {
             const square = document.createElement("div");
