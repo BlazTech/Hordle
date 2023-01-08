@@ -59,12 +59,12 @@ class Hordle {
         this.string = "";
     }
 
-    //pravljenje i dodavanje kvadrata u listu
+    //pozivanje funkcije za pravljenje kvadrata u gridu
     createGridSquareObjects() {
         this.grid.createSquareObjects(this.rowNumber, this.columnNumber);
     }
 
-    //obnavljanje teksta u gridu
+    //pozivanje funkcije za obnavljanje teksta u gridu
     updateGridText() {
         this.grid.updateGridText(this.string, this.currentRowNumber, this.columnNumber);
     }
@@ -88,33 +88,19 @@ class Hordle {
                     if (this.mainWord[i] == this.string[i]) {
                         stringLetters[i] = "0";
                         mainWordLetters[i] = "1";
-                        
                         this.grid.changeGridColors("greenbox", this.currentRowNumber, i);
-
-                        //this.listOfRows[this.currentRowNumber][i].classList.remove("regularbox");
-                        //this.listOfRows[this.currentRowNumber][i].classList.add("greenbox");
                     }   
                 } else {
                     this.grid.changeGridColors("darkgreybox", this.currentRowNumber, i);
-
-                    //this.listOfRows[this.currentRowNumber][i].classList.remove("regularbox");
-                    //this.listOfRows[this.currentRowNumber][i].classList.add("darkgreybox");
                 }
             } 
             //provjera slova koja su prisutna, ali na različitom mjestu
             for (let i=0; i < this.columnNumber; i++) {
                 if (mainWordLetters.includes(stringLetters[i])) {
                     mainWordLetters[mainWordLetters.indexOf(stringLetters[i])] = "1";
-
                     this.grid.changeGridColors("orangebox", this.currentRowNumber, i);
-
-                    //this.listOfRows[this.currentRowNumber][i].classList.remove("regularbox");
-                    //this.listOfRows[this.currentRowNumber][i].classList.add("orangebox");
-                } else if (stringLetters[i] !== "0"){
+                } else if (stringLetters[i] !== "0") {
                     this.grid.changeGridColors("darkgreybox", this.currentRowNumber, i);
-
-                    //this.listOfRows[this.currentRowNumber][i].classList.remove("regularbox");
-                    //this.listOfRows[this.currentRowNumber][i].classList.add("darkgreybox");
                 }
             }
             //provjera pobjede, gubitka
