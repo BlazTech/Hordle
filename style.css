@@ -52,13 +52,13 @@ main {
     height: 100%;
 }
 
+/* inside main */
 #grid {
     display: grid;
     width: 70vw;
     height: 84vw;
     max-width: 340px;
     max-height: 409px;
-    grid-template-columns: repeat(5, 1fr);
     gap: 5px;
     
     /* background-color: #1eb042; */
@@ -76,6 +76,7 @@ main {
     font-size: 32px;
     text-align: center;
 }
+/* end of inside main */
 
 /* color classes for squares */
 .regularbox {
