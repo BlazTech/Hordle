@@ -1,7 +1,7 @@
 class Keyboard {
     constructor() {
-        this.keyboard = document.getElementById("keyboard");
-        this.listOfKeyDivs = [];
+        this.keyboard = document.querySelector("#keyboard");
+        this.listOfSquareDivs = [];
         this.keyboardLanguages = {
             "croatian": [
                 "e r t z u i o p š đ",
@@ -24,10 +24,20 @@ class Keyboard {
                 letterSquare.innerText = letter.toUpperCase();
                 square.append(letterSquare);
                 rowDiv.append(square);
+                this.listOfSquareDivs.push(square);
             });
         });
     }
+    changeKeyColor(colorClass, letter) {
+        this.listOfSquareDivs.forEach(square => {
+            const key = square.firstElementChild;
+            if (key.innerText.toLowerCase() == letter) {
+                square.classList.remove("regularbox");
+                square.classList.remove("greenbox");
+                square.classList.remove("orangebox");
+                square.classList.remove("darkgreybox");
+                square.classList.add(colorClass);
+            }
+        });
+    }
 }
-
-const keyboard = new Keyboard();
-keyboard.createKeyboard("croatian");
