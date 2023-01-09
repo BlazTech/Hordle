@@ -4,7 +4,7 @@ class Grid {
         this.listOfRows = [];
     }
     //pravljenje i dodavanje kvadrata u listu
-    createSquareObjects(rowNumber, columnNumber) {
+    createGrid(rowNumber, columnNumber) {
         this.grid.style.gridTemplateColumns = "repeat(" + String(columnNumber) + ", 1fr)";
 
         let tempList = [];
@@ -62,8 +62,8 @@ class Hordle {
     }
 
     //pozivanje funkcije za pravljenje kvadrata u gridu
-    createGridSquareObjects() {
-        this.grid.createSquareObjects(this.rowNumber, this.columnNumber);
+    createGrid() {
+        this.grid.createGrid(this.rowNumber, this.columnNumber);
     }
 
     //pozivanje funkcije za obnavljanje teksta u gridu
@@ -155,7 +155,7 @@ class Hordle {
 
 const grid = new Grid();
 const hordle = new Hordle(grid, null, "kanta");
-hordle.createGridSquareObjects();
+hordle.createGrid();
 
 document.addEventListener("keydown", event => {
     hordle.inputCheck(event);
