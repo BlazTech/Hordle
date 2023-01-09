@@ -1,7 +1,8 @@
 class Hordle {
-    constructor(grid, keyboard, mainWord) {
+    constructor(grid, keyboard, language, mainWord) {
         this.grid = grid;
         this.keyboard = keyboard;
+        this.language = language;
         this.mainWord = mainWord;
         this.abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";
         this.state = "playing";
@@ -21,6 +22,10 @@ class Hordle {
     //pozivanje funkcije za obnavljanje teksta u gridu
     updateGridText() {
         this.grid.updateGridText(this.string, this.currentRowNumber, this.columnNumber);
+    }
+    
+    createKeyboard() {
+        this.keyboard.createKeyboard(this.language);
     }
 
     alertWin() {
@@ -43,9 +48,11 @@ class Hordle {
                         stringLetters[i] = "0";
                         mainWordLetters[i] = "1";
                         this.grid.changeGridColors("greenbox", this.currentRowNumber, i);
+                        this.keyboard.changeKeyColor("greenbox",this.string[i]);
                     }   
                 } else {
                     this.grid.changeGridColors("darkgreybox", this.currentRowNumber, i);
+                    this.keyboard.changeKeyColor("darkgreybox",this.string[i]);
                 }
             } 
             //provjera slova koja su prisutna, ali na različitom mjestu
@@ -53,8 +60,10 @@ class Hordle {
                 if (mainWordLetters.includes(stringLetters[i])) {
                     mainWordLetters[mainWordLetters.indexOf(stringLetters[i])] = "1";
                     this.grid.changeGridColors("orangebox", this.currentRowNumber, i);
+                    this.keyboard.changeKeyColor("orangebox",this.string[i]);
                 } else if (stringLetters[i] !== "0") {
                     this.grid.changeGridColors("darkgreybox", this.currentRowNumber, i);
+                    this.keyboard.changeKeyColor("darkgreybox",this.string[i]);
                 }
             }
             //provjera pobjede, gubitka
@@ -97,17 +106,20 @@ class Hordle {
     }
 }
 
-// function chooseMainWord() {
-//     function randomInt(max) {
-//         return Math.floor(Math.random() * (max + 1));
-//     }
-//     const mainWord = listOfWords[randomInt(listOfWords.length - 1)];
-//     return mainWord;
-// }
+function chooseMainWord() {
+    function randomInt(max) {
+        return Math.floor(Math.random() * (max + 1));
+    }
+    const mainWord = listOfWords[randomInt(listOfWords.length - 1)];
+    return mainWord;
+}
 
 const grid = new Grid();
-const hordle = new Hordle(grid, null, "kanta");
+const keyboard = new Keyboard();
+const hordle = new Hordle(grid, keyboard, "croatian", chooseMainWord());
+
 hordle.createGrid();
+hordle.createKeyboard();
 
 document.addEventListener("keydown", event => {
     hordle.inputCheck(event);
