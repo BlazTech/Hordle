@@ -10,15 +10,14 @@ class Grid {
         let tempList = [];
         for (let i=0; i < (rowNumber * columnNumber); i++ ) {
             const square = document.createElement("div");
-            square.id = "#s" + String(i);
             square.classList.add("cell", "regularbox");
+
             const letterSquare = document.createElement("div");
-            letterSquare.id = "#l" + String(i);
-            letterSquare.className = "letter-square";
-            square.append(letterSquare);
+            letterSquare.classList.add("letter-square");
             this.grid.append(square);
+            square.append(letterSquare);
+            
             tempList.push(square);
-        
             if (tempList.length >= columnNumber) {
                 this.listOfRows.push(tempList);
                 tempList = [];
