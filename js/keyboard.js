@@ -36,6 +36,7 @@ class Keyboard {
                 square.classList.remove("greenbox");
                 square.classList.remove("orangebox");
                 square.classList.remove("darkgreybox");
+                
                 square.classList.add(colorClass);
             }
         });
