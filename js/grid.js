@@ -16,7 +16,7 @@ class Grid {
             letterSquare.classList.add("letter-square");
             this.grid.append(square);
             square.append(letterSquare);
-            
+
             tempList.push(square);
             if (tempList.length >= columnNumber) {
                 this.listOfRows.push(tempList);
@@ -40,6 +40,10 @@ class Grid {
     //bojanje grida
     changeGridColors(colorClass, currentRowNumber, i) {
         this.listOfRows[currentRowNumber][i].classList.remove("regularbox");
+        this.listOfRows[currentRowNumber][i].classList.remove("greenbox");
+        this.listOfRows[currentRowNumber][i].classList.remove("orangebox");
+        this.listOfRows[currentRowNumber][i].classList.remove("darkgreybox");
+        
         this.listOfRows[currentRowNumber][i].classList.add(colorClass);
     }
 
