@@ -18,7 +18,7 @@ class Keyboard {
     
             line.split(" ").forEach(letter => {
                 const square = document.createElement("div");
-                square.classList.add("cell", "regularbox");
+                square.classList.add("cell", "click", "regularbox");
                 const letterSquare = document.createElement("div");
                 letterSquare.className = "letter-square";
                 letterSquare.innerText = letter.toUpperCase();

@@ -72,6 +72,10 @@ main {
     min-height: 42px;
 }
 
+.click {
+    cursor: pointer;
+}
+
 .letter-square {
     font-size: 32px;
     text-align: center;
