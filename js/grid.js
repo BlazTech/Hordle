@@ -29,7 +29,7 @@ class Grid {
         for (let i=0; i < columnNumber; i++) {
             if (i < string.length) {
                 const child = this.listOfRows[currentRowNumber][i].querySelector(".letter-square");
-                child.innerText = string[i].toUpperCase();
+                child.innerText = string[i];
             } else {
                 const child = this.listOfRows[currentRowNumber][i].querySelector(".letter-square");
                 child.innerText = "";
