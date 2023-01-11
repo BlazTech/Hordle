@@ -58,6 +58,17 @@ main {
     max-width: 340px;
     max-height: 409px;
 }
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.keyboard-row {
+    display: flex;
+    gap: 0.1rem;
+}
 .cell {
     display: flex;
     justify-content: center;
