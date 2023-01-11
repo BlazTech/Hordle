@@ -21,7 +21,7 @@ class Keyboard {
                 square.classList.add("cell", "click", "regularbox");
                 const letterSquare = document.createElement("div");
                 letterSquare.className = "letter-square";
-                letterSquare.innerText = letter.toUpperCase();
+                letterSquare.innerText = letter;
                 square.append(letterSquare);
                 rowDiv.append(square);
                 this.listOfSquareDivs.push(square);
@@ -31,13 +31,14 @@ class Keyboard {
     changeKeyColor(colorClass, letter) {
         this.listOfSquareDivs.forEach(square => {
             const key = square.firstElementChild;
-            if (key.innerText.toLowerCase() == letter) {
-                square.classList.remove("regularbox");
-                square.classList.remove("greenbox");
-                square.classList.remove("orangebox");
-                square.classList.remove("darkgreybox");
-                
-                square.classList.add(colorClass);
+            if (key.innerText == letter) {
+                if (square.classList.contains("regularbox") || square.classList.contains("orangebox")) {
+                    square.classList.remove("regularbox");
+                    square.classList.remove("greenbox");
+                    square.classList.remove("orangebox");
+                    square.classList.remove("darkgreybox");
+                    square.classList.add(colorClass);
+                }
             }
         });
     }
