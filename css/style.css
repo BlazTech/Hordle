@@ -73,7 +73,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     min-width: 38px;
     min-height: 42px;
 }
@@ -83,6 +83,7 @@ main {
 .letter-square {
     font-size: 32px;
     text-align: center;
+    text-transform: uppercase;
 }
 /* end of main */
 

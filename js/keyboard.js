@@ -31,7 +31,7 @@ class Keyboard {
     changeKeyColor(colorClass, letter) {
         this.listOfSquareDivs.forEach(square => {
             const key = square.firstElementChild;
-            if (key.innerText == letter) {
+            if (key.innerText.toLowerCase() == letter) {
                 if (square.classList.contains("regularbox") || square.classList.contains("orangebox")) {
                     square.classList.remove("regularbox");
                     square.classList.remove("greenbox");
