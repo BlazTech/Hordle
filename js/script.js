@@ -28,6 +28,15 @@ class Hordle {
         this.keyboard.createKeyboard(this.language);
     }
 
+    addKeyboardClickCheck() {
+        this.keyboard.listOfSquareDivs.forEach(square => {
+            const key = square.firstElementChild;
+            square.addEventListener("click", () => {
+                this.inputCheck(false, key.innerText);
+            });
+        });
+    }
+    
     alertWin() {
         alert("POBJEDA!\n" + "REFRESH ZA NOVU RIJEČ");
     }
@@ -88,17 +97,21 @@ class Hordle {
         }
     }
     //provjera inputa
-    inputCheck(event) {
-        let key = event.key;
+    inputCheck(event, keyboardKey="") {
+        if (keyboardKey == "") {
+            var key = event.key;
+        } else {
+            var key = keyboardKey;
+        }
         if (this.abc.includes(key)) {
             if (this.string.length < this.columnNumber) {
                 this.string += key.toLowerCase();
                 this.updateGridText();
             }
-        } else if (key == "Backspace") {
+        } else if (key == "Backspace" || key == "⌫") {
             this.string = this.string.slice(0, this.string.length - 1);
             this.updateGridText();
-        } else if (key == "Enter") {
+        } else if (key == "Enter" || key == "↩") {
             if (this.string.length == this.columnNumber) {
                 this.checkWord();
             }
@@ -120,9 +133,9 @@ const hordle = new Hordle(grid, keyboard, "croatian", chooseMainWord());
 
 hordle.createGrid();
 hordle.createKeyboard();
+hordle.addKeyboardClickCheck();
 
+console.log(hordle.mainWord);
 document.addEventListener("keydown", event => {
     hordle.inputCheck(event);
 })
-
-console.log(hordle.mainWord);
