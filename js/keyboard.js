@@ -1,6 +1,8 @@
 class Keyboard {
     constructor() {
-        this.keyboard = document.querySelector("#keyboard");
+        this.main = document.querySelector("main");
+        this.keyboard = document.createElement("div");
+        this.keyboard.id = "keyboard";
         this.listOfSquareDivs = [];
         this.keyboardLanguages = {
             "croatian": [
@@ -27,6 +29,7 @@ class Keyboard {
                 this.listOfSquareDivs.push(square);
             });
         });
+        this.main.append(this.keyboard);
     }
     changeKeyColor(colorClass, letter) {
         this.listOfSquareDivs.forEach(square => {

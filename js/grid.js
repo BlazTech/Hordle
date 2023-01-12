@@ -1,6 +1,8 @@
 class Grid {
     constructor() {
-        this.grid = document.querySelector("#grid");
+        this.main = document.querySelector("main");
+        this.grid = document.createElement("div"); 
+        this.grid.id = "grid"; 
         this.listOfRows = [];
     }
     //pravljenje i dodavanje kvadrata u listu
@@ -22,7 +24,8 @@ class Grid {
                 this.listOfRows.push(tempList);
                 tempList = [];
             }
-        }        
+        }
+        this.main.append(this.grid);
     }
     //obnavljanje teksta u gridu
     updateGridText(string, currentRowNumber, columnNumber) {
