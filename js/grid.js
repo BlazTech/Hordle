@@ -13,9 +13,9 @@ class Grid {
         for (let i=0; i < (rowNumber * columnNumber); i++ ) {
             const square = document.createElement("div");
             square.classList.add("cell", "regularbox");
-
             const letterSquare = document.createElement("div");
             letterSquare.classList.add("letter-square");
+
             this.grid.append(square);
             square.append(letterSquare);
 
@@ -26,6 +26,10 @@ class Grid {
             }
         }
         this.main.append(this.grid);
+    }
+    deleteSelf() {
+        this.grid.innerHTML = "";
+        this.listOfRows = [];
     }
     //obnavljanje teksta u gridu
     updateGridText(string, currentRowNumber, columnNumber) {
