@@ -31,15 +31,22 @@ class Keyboard {
         });
         this.main.append(this.keyboard);
     }
+    deleteSelf() {
+        this.keyboard.innerHTML = "";
+        this.listOfSquareDivs = [];
+    }
     changeKeyColor(colorClass, letter) {
         this.listOfSquareDivs.forEach(square => {
             const key = square.firstElementChild;
             if (key.innerText.toLowerCase() == letter) {
-                if (square.classList.contains("regularbox") || square.classList.contains("orangebox")) {
+                if ((square.classList.contains("regularbox") || square.classList.contains("orangebox")) 
+                && (square.classList.contains("orangebox") && colorClass == "darkgreybox") == false) {
+
                     square.classList.remove("regularbox");
                     square.classList.remove("greenbox");
                     square.classList.remove("orangebox");
                     square.classList.remove("darkgreybox");
+                    
                     square.classList.add(colorClass);
                 }
             }
