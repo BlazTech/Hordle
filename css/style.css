@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
-
 :root {
     /* font colors */
     --default-font-color:rgb(39, 39, 39);
@@ -14,96 +13,94 @@
     --square-green-color:#1eb042;
     --square-orange-color:#deaa1b;
 }
-
 *, ::before, ::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
 html, body {
     height: 100%;
 }
-
 html {
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     font-size: 32px;
     color: var(--default-font-color);
 }
-
 body {
     display: flex;
     flex-direction: column;
 }
-
+/* body */
 header p {
     background-color: var(--default-container-color);
     color: var(--white-font-color);
     font-size: 2rem;
     text-align: center;
 }
-
 main {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
     height: 100%;
 }
+/* end of body */
 
+/* main */
 #grid {
     display: grid;
+    gap: 5px;
+
     width: 70vw;
     height: 84vw;
     max-width: 340px;
     max-height: 409px;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 5px;
-    
-    /* background-color: #1eb042; */
 }
-
+#keyboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.keyboard-row {
+    display: flex;
+    gap: 0.1rem;
+}
 .cell {
     display: flex;
     justify-content: center;
     align-items: center;
+
     min-width: 38px;
     min-height: 42px;
 }
-
+.click {
+    cursor: pointer;
+}
 .letter-square {
     font-size: 32px;
     text-align: center;
+    text-transform: uppercase;
 }
+/* end of main */
 
 /* color classes for squares */
 .regularbox {
     background-color: var(--square-default-color);
     border: 2px solid var(--square-border-color);
 }
-
 .greenbox {
     background-color: var(--square-green-color);
     border: 2px solid var(--square-border-color);
 }
-
 .orangebox {
     background-color: var(--square-orange-color);
     border: 2px solid var(--square-border-color);
 }
-
 .darkgreybox {
     background-color: var(--square-dark-color);
     border: 2px solid var(--square-border-color);
 }
-
-
-
-
-/* footer p {
-    background-color: var(--default-container-color);
-    color: var(--white-font-color);
-    font-size: 1rem;
-    text-align: center;
-} */
