@@ -24,11 +24,11 @@ class Hordle {
     updateGridText() {
         this.grid.updateGridText(this.string, this.currentRowNumber, this.columnNumber);
     }
-    
+    //pravljenje tastature
     createKeyboard() {
         this.keyboard.createKeyboard(this.language);
     }
-
+    //provjera inputa s html tastature
     addKeyboardClickCheck() {
         this.keyboard.listOfSquareDivs.forEach(square => {
             const key = square.firstElementChild;
@@ -118,7 +118,7 @@ class Hordle {
             }
         }
     }
-
+    //resetiranje igre
     startNewGame() {
         function chooseMainWord() {
             function randomInt(max) {
