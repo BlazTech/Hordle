@@ -1,17 +1,18 @@
 class Hordle {
-    constructor(grid, keyboard, language, mainWord) {
+    constructor(grid, keyboard) {
         this.grid = grid;
         this.keyboard = keyboard;
-        this.language = language;
-        this.mainWord = mainWord;
+        this.addEventListener = false;
+
+        this.language = "croatian";
         this.abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";
+        this.mainWord = undefined;
+        this.string = "";
         this.state = "playing";
 
         this.rowNumber = 6;
         this.columnNumber = 5;
         this.currentRowNumber = 0;
-        
-        this.string = "";
     }
 
     //pozivanje funkcije za pravljenje kvadrata u gridu
@@ -36,7 +37,7 @@ class Hordle {
             });
         });
     }
-    
+
     alertWin() {
         alert("POBJEDA!\n" + "REFRESH ZA NOVU RIJEČ");
     }
@@ -117,25 +118,44 @@ class Hordle {
             }
         }
     }
-}
 
-function chooseMainWord() {
-    function randomInt(max) {
-        return Math.floor(Math.random() * (max + 1));
+    startNewGame() {
+        function chooseMainWord() {
+            function randomInt(max) {
+                return Math.floor(Math.random() * (max + 1));
+            }
+            const mainWord = listOfWords[randomInt(listOfWords.length - 1)];
+            return mainWord;
+        }
+
+        this.language = "croatian";
+        this.abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";
+        this.mainWord = chooseMainWord();
+        this.string = "";
+        this.state = "playing";
+        
+        this.rowNumber = 6;
+        this.columnNumber = 5;
+        this.currentRowNumber = 0;
+
+        this.grid.deleteSelf();
+        this.keyboard.deleteSelf();
+
+        this.grid.createGrid(this.rowNumber, this.columnNumber);
+        this.keyboard.createKeyboard(this.language);
+        this.addKeyboardClickCheck();
+
+        if (this.addEventListener == false) {
+            document.addEventListener("keydown", event => {
+                this.inputCheck(event);
+            });
+            this.addEventListener = true;
+        }
     }
-    const mainWord = listOfWords[randomInt(listOfWords.length - 1)];
-    return mainWord;
 }
 
 const grid = new Grid();
 const keyboard = new Keyboard();
-const hordle = new Hordle(grid, keyboard, "croatian", chooseMainWord());
+const hordle = new Hordle(grid, keyboard);
 
-hordle.createGrid();
-hordle.createKeyboard();
-hordle.addKeyboardClickCheck();
-
-console.log(hordle.mainWord);
-document.addEventListener("keydown", event => {
-    hordle.inputCheck(event);
-})
+hordle.startNewGame()
