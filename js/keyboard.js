@@ -12,6 +12,7 @@ class Keyboard {
             ]
         } 
     }
+    //pravljenje tastature
     createKeyboard(language) {
         this.keyboardLanguages[language].forEach(line => {
             const rowDiv = document.createElement("div");
@@ -24,8 +25,9 @@ class Keyboard {
                 const letterSquare = document.createElement("div");
                 letterSquare.className = "letter-square";
                 letterSquare.innerText = letter;
-                square.append(letterSquare);
+
                 rowDiv.append(square);
+                square.append(letterSquare);
                 this.listOfSquareDivs.push(square);
             });
         });
@@ -35,6 +37,7 @@ class Keyboard {
         this.keyboard.innerHTML = "";
         this.listOfSquareDivs = [];
     }
+    //promjena boje tipki
     changeKeyColor(colorClass, letter) {
         this.listOfSquareDivs.forEach(square => {
             const key = square.firstElementChild;
