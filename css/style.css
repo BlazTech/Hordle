@@ -85,7 +85,7 @@ main {
     text-align: center;
     text-transform: uppercase;
 }
-
+/* pop up */
 .modal {
     position: fixed;
     top: 50%;
@@ -152,6 +152,7 @@ main {
     right: 0;
     background-color: rgba(128, 128, 128, 0.7);
 }
+/* end of pop up */
 /* end of main */
 
 /* color classes for squares */
