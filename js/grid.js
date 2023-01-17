@@ -43,7 +43,6 @@ class Grid {
             }
         }
     }
-
     //bojanje grida
     changeGridColors(colorClass, currentRowNumber, i) {
         this.listOfRows[currentRowNumber][i].classList.remove("regularbox");
@@ -53,5 +52,4 @@ class Grid {
         
         this.listOfRows[currentRowNumber][i].classList.add(colorClass);
     }
-
 }
