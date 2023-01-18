@@ -101,7 +101,7 @@ main {
 }
 .modal-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
 
     padding: 10px 15px;
@@ -111,13 +111,13 @@ main {
     font-size: 1rem;
     font-weight: bold;
 }
-.modal-header .close-button {
+/* .modal-header .close-button {
     cursor: pointer;
     border: none;
     background: none;
     font-size: 1.25rem;
     font-weight: bold;
-}
+} */
 .modal-body {
     display: flex;
     flex-direction: column;
@@ -145,6 +145,7 @@ main {
     padding: 0.2em 0.75em;
 }
 #overlay {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
