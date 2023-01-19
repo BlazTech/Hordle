@@ -8,7 +8,7 @@ class Keyboard {
             "croatian": [
                 "e r t z u i o p š đ",
                 "ž a s d f g h j k l č ⌫",
-                "ć c v b n m lj nj dž ↩"
+                "ć c v b n m lj=* nj=& dž=% ↩"
             ]
         } 
     }
