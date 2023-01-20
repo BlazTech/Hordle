@@ -154,8 +154,8 @@ class Hordle {
     }
 }
 
-// const grid = new Grid();
-// const keyboard = new Keyboard();
-// const hordle = new Hordle(grid, keyboard);
+const grid = new Grid();
+const keyboard = new Keyboard();
+const hordle = new Hordle(grid, keyboard);
 
-// hordle.startNewGame()
+hordle.startNewGame()
