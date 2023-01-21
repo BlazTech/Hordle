@@ -35,7 +35,7 @@ body {
 header p {
     background-color: var(--default-container-color);
     color: var(--white-font-color);
-    font-size: 2rem;
+    font-size: 1.5rem;
     text-align: center;
 }
 main {
