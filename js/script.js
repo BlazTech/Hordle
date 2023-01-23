@@ -4,15 +4,16 @@ class Hordle {
         this.keyboard = keyboard;
         this.addEventListener = false;
 
-        this.language = "croatian";
-        this.abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";
-        this.mainWord = undefined;
-        this.string = "";
-        this.state = "playing";
-
-        this.rowNumber = 6;
-        this.columnNumber = 5;
-        this.currentRowNumber = 0;
+        this.language;
+        this.keyboardStringRows;
+        this.abc;
+        this.specialAbc;
+        this.mainWord;
+        this.string;
+        this.state;
+        this.rowNumber;
+        this.columnNumber;
+        this.currentRowNumber;
     }
 
     //pozivanje funkcije za pravljenje kvadrata u gridu
@@ -99,20 +100,31 @@ class Hordle {
     }
     //provjera inputa
     inputCheck(event, keyboardKey="") {
+        keyboardKey = keyboardKey.toLowerCase();
+
         if (keyboardKey == "") {
-            var key = event.key;
+            var key = event.key.toLowerCase();
+            console.log(key);
         } else {
-            var key = keyboardKey;
+            if (keyboardKey in this.specialAbc) {
+                console.log("TRUE");
+                key = this.specialAbc[keyboardKey];
+            }
+            else {
+                console.log(keyboardKey);
+                console.log(this.specialAbc);
+                var key = keyboardKey;
+            }
         }
-        if (this.abc.includes(key)) {
+        if (this.abc.split(" ").includes(key)) {
             if (this.string.length < this.columnNumber) {
                 this.string += key.toLowerCase();
                 this.updateGridText();
             }
-        } else if (key == "Backspace" || key == "⌫") {
+        } else if (key == "backspace" || key == "⌫") {
             this.string = this.string.slice(0, this.string.length - 1);
             this.updateGridText();
-        } else if (key == "Enter" || key == "↩") {
+        } else if (key == "enter" || key == "↩") {
             if (this.string.length == this.columnNumber) {
                 this.checkWord();
             }
@@ -127,9 +139,30 @@ class Hordle {
             const mainWord = listOfWords[randomInt(listOfWords.length - 1)];
             return mainWord;
         }
-
+        //paste init
         this.language = "croatian";
-        this.abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";
+
+        this.keyboardStringRows = this.keyboard.keyboardLanguages[this.language];
+        this.abc = "";
+        this.specialAbc = {};
+        for (let i=0; i < this.keyboardStringRows.length; i++) {
+            if (i != 0) {
+                this.abc += " ";
+            }
+            this.abc += this.keyboardStringRows[i];
+        }
+        this.abc = this.abc.replace(" ⌫", "");
+        this.abc = this.abc.replace(" ↩", "");
+
+        this.abc.split(" ").forEach(sign => {
+            for (let i=0; i < sign.length; i++) {
+                if (sign[i] == "=") {
+                    this.specialAbc[sign.slice(0, i)] = sign.slice(i + 1);
+                }
+            }
+        });
+
+        
         this.mainWord = chooseMainWord();
         this.string = "";
         this.state = "playing";
@@ -137,7 +170,12 @@ class Hordle {
         this.rowNumber = 6;
         this.columnNumber = 5;
         this.currentRowNumber = 0;
-
+        
+        console.log(this.abc);
+        console.log(this.specialAbc);
+        console.log(this.mainWord);
+    
+        //end of paste init
         this.grid.deleteSelf();
         this.keyboard.deleteSelf();
 
@@ -154,8 +192,8 @@ class Hordle {
     }
 }
 
-// const grid = new Grid();
-// const keyboard = new Keyboard();
-// const hordle = new Hordle(grid, keyboard);
+const grid = new Grid();
+const keyboard = new Keyboard();
+const hordle = new Hordle(grid, keyboard);
 
-// hordle.startNewGame()
+hordle.startNewGame()
