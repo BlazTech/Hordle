@@ -27,6 +27,7 @@ class Grid {
         }
         this.main.append(this.grid);
     }
+    //brisanje
     deleteSelf() {
         this.grid.innerHTML = "";
         this.listOfRows = [];
