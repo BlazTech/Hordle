@@ -81,7 +81,7 @@ class Hordle {
             this.currentRowNumber += 1;
             if (this.string == this.mainWord) {
                 this.state = "win";
-            } else if (this.currentRowNumber > 5) {
+            } else if (this.currentRowNumber > this.rowNumber - 1) {
                 this.state = "lose";
             }
             //slanje poruka za pobjedu, gubitak
@@ -104,15 +104,11 @@ class Hordle {
 
         if (keyboardKey == "") {
             var key = event.key.toLowerCase();
-            console.log(key);
         } else {
             if (keyboardKey in this.specialAbc) {
-                console.log("TRUE");
                 key = this.specialAbc[keyboardKey];
             }
             else {
-                console.log(keyboardKey);
-                console.log(this.specialAbc);
                 var key = keyboardKey;
             }
         }
@@ -131,7 +127,7 @@ class Hordle {
         }
     }
     //resetiranje igre
-    startNewGame() {
+    startNewGame(row=6, column=5) {
         function chooseMainWord() {
             function randomInt(max) {
                 return Math.floor(Math.random() * (max + 1));
@@ -167,13 +163,9 @@ class Hordle {
         this.string = "";
         this.state = "playing";
         
-        this.rowNumber = 6;
-        this.columnNumber = 5;
+        this.rowNumber = row;
+        this.columnNumber = column;
         this.currentRowNumber = 0;
-        
-        console.log(this.abc);
-        console.log(this.specialAbc);
-        console.log(this.mainWord);
     
         //end of paste init
         this.grid.deleteSelf();
