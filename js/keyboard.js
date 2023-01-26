@@ -33,6 +33,7 @@ class Keyboard {
         });
         this.main.append(this.keyboard);
     }
+    //brisanje
     deleteSelf() {
         this.keyboard.innerHTML = "";
         this.listOfSquareDivs = [];
