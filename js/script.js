@@ -3,11 +3,22 @@ class Hordle {
         this.grid = grid;
         this.keyboard = keyboard;
         this.addEventListener = false;
-
+        this.keyboardLanguages = {
+            "croatian": {
+                "keyboard": 
+                [
+                "e r t z u i o p š đ",
+                "ž a s d f g h j k l č ⌫",
+                "ć c v b n m lj nj dž ↩"
+                ],
+                "specialChars": {"lj": "*", "nj": "?", "dž": "!"}
+            }
+        }         
+        
         this.language;
         this.keyboardStringRows;
         this.abc;
-        this.specialAbc;
+        this.specialChars;
         this.mainWord;
         this.string;
         this.state;
@@ -27,7 +38,7 @@ class Hordle {
     }
     //pravljenje tastature
     createKeyboard() {
-        this.keyboard.createKeyboard(this.language);
+        this.keyboard.createKeyboard(this.keyboardLanguages, this.language);
     }
     //provjera inputa s html tastature
     addKeyboardClickCheck() {
@@ -105,8 +116,8 @@ class Hordle {
         if (keyboardKey == "") {
             var key = event.key.toLowerCase();
         } else {
-            if (keyboardKey in this.specialAbc) {
-                key = this.specialAbc[keyboardKey];
+            if (keyboardKey in this.specialChars) {
+                key = this.specialChars[keyboardKey];
             }
             else {
                 var key = keyboardKey;
@@ -138,9 +149,9 @@ class Hordle {
         //paste init
         this.language = "croatian";
 
-        this.keyboardStringRows = this.keyboard.keyboardLanguages[this.language];
+        this.keyboardStringRows = this.keyboardLanguages[this.language]["keyboard"];
         this.abc = "";
-        this.specialAbc = {};
+        this.specialChars = this.keyboardLanguages[this.language]["specialChars"];
         for (let i=0; i < this.keyboardStringRows.length; i++) {
             if (i != 0) {
                 this.abc += " ";
@@ -150,15 +161,7 @@ class Hordle {
         this.abc = this.abc.replace(" ⌫", "");
         this.abc = this.abc.replace(" ↩", "");
 
-        this.abc.split(" ").forEach(sign => {
-            for (let i=0; i < sign.length; i++) {
-                if (sign[i] == "=") {
-                    this.specialAbc[sign.slice(0, i)] = sign.slice(i + 1);
-                }
-            }
-        });
 
-        
         this.mainWord = chooseMainWord();
         this.string = "";
         this.state = "playing";
@@ -172,7 +175,7 @@ class Hordle {
         this.keyboard.deleteSelf();
 
         this.grid.createGrid(this.rowNumber, this.columnNumber);
-        this.keyboard.createKeyboard(this.language);
+        this.keyboard.createKeyboard(this.keyboardLanguages, this.language);
         this.addKeyboardClickCheck();
 
         if (this.addEventListener == false) {
