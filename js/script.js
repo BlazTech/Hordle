@@ -27,18 +27,9 @@ class Hordle {
         this.currentRowNumber;
     }
 
-    //pozivanje funkcije za pravljenje kvadrata u gridu
-    createGrid() {
-        this.grid.createGrid(this.rowNumber, this.columnNumber);
-    }
-
     //pozivanje funkcije za obnavljanje teksta u gridu
     updateGridText() {
         this.grid.updateGridText(this.string, this.currentRowNumber, this.columnNumber);
-    }
-    //pravljenje tastature
-    createKeyboard() {
-        this.keyboard.createKeyboard(this.keyboardLanguages, this.language);
     }
     //provjera inputa s html tastature
     addKeyboardClickCheck() {
