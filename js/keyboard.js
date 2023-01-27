@@ -4,17 +4,11 @@ class Keyboard {
         this.keyboard = document.createElement("div");
         this.keyboard.id = "keyboard";
         this.listOfSquareDivs = [];
-        this.keyboardLanguages = {
-            "croatian": [
-                "e r t z u i o p š đ",
-                "ž a s d f g h j k l č ⌫",
-                "ć c v b n m lj=* nj=& dž=% ↩"
-            ]
-        } 
+
     }
     //pravljenje tastature
-    createKeyboard(language) {
-        this.keyboardLanguages[language].forEach(line => {
+    createKeyboard(keyboardLanguages, language) {
+        keyboardLanguages[language]["keyboard"].forEach(line => {
             const rowDiv = document.createElement("div");
             rowDiv.className = "keyboard-row";
             this.keyboard.append(rowDiv);
