@@ -14,7 +14,7 @@ class Hordle {
                 "specialChars": {"lj": "*", "nj": "?", "dž": "!"}
             }
         }         
-        
+        //deklariranje varijabli
         this.language;
         this.keyboardStringRows;
         this.abc;
@@ -41,6 +41,7 @@ class Hordle {
         });
     }
 
+    //upozorenja na gubitak, pobjedu
     alertWin() {
         alert("POBJEDA!\n" + "REFRESH ZA NOVU RIJEČ");
     }
