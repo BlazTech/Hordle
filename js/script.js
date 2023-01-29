@@ -138,7 +138,7 @@ class Hordle {
             const mainWord = listOfWords[randomInt(listOfWords.length - 1)];
             return mainWord;
         }
-        //paste init
+        //varijable
         this.language = "croatian";
 
         this.keyboardStringRows = this.keyboardLanguages[this.language]["keyboard"];
@@ -161,8 +161,9 @@ class Hordle {
         this.rowNumber = row;
         this.columnNumber = column;
         this.currentRowNumber = 0;
-    
-        //end of paste init
+        //kraj varijabli
+
+        //obnavljanje tipkovnice i grida
         this.grid.deleteSelf();
         this.keyboard.deleteSelf();
 
@@ -179,6 +180,7 @@ class Hordle {
     }
 }
 
+//pravljenje objekata
 const grid = new Grid();
 const keyboard = new Keyboard();
 const hordle = new Hordle(grid, keyboard);
