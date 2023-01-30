@@ -36,7 +36,7 @@ class Hordle {
         this.keyboard.listOfSquareDivs.forEach(square => {
             const key = square.firstElementChild;
             square.addEventListener("click", () => {
-                this.inputCheck(false, key.innerText);
+                this.inputCheck(key.innerText, true);
             });
         });
     }
@@ -102,20 +102,21 @@ class Hordle {
         }
     }
     //provjera inputa
-    inputCheck(event, keyboardKey="") {
-        keyboardKey = keyboardKey.toLowerCase();
-
-        if (keyboardKey == "") {
-            var key = event.key.toLowerCase();
+    inputCheck(event, keyboard=false) {
+        if (keyboard) {
+            var key = event.toLowerCase();
         } else {
-            if (keyboardKey in this.specialChars) {
-                key = this.specialChars[keyboardKey];
-            }
-            else {
-                var key = keyboardKey;
-            }
+            var key = event.key.toLowerCase();
         }
-        if (this.abc.split(" ").includes(key)) {
+
+        if (key in this.specialChars) {
+            key = this.specialChars[key];
+        }
+
+        console.log(key);
+        console.log(this.specialChars.values)
+        
+        if (this.abc.split(" ").includes(key) || key in this.specialChars.values) {
             if (this.string.length < this.columnNumber) {
                 this.string += key.toLowerCase();
                 this.updateGridText();
