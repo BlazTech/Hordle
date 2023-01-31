@@ -29,7 +29,7 @@ class Hordle {
 
     //pozivanje funkcije za obnavljanje teksta u gridu
     updateGridText() {
-        this.grid.updateGridText(this.string, this.currentRowNumber, this.columnNumber);
+        this.grid.updateGridText(this.string, this.specialChars, this.currentRowNumber, this.columnNumber);
     }
     //provjera inputa s html tastature
     addKeyboardClickCheck() {
@@ -113,10 +113,12 @@ class Hordle {
             key = this.specialChars[key];
         }
 
-        console.log(key);
-        console.log(this.specialChars.values)
+        console.log(Object.values(this.specialChars));
         
-        if (this.abc.split(" ").includes(key) || key in this.specialChars.values) {
+        console.log(typeof key);
+        console.log(key);
+
+        if (this.abc.split(" ").includes(key) || Object.values(this.specialChars).includes(key)) {
             if (this.string.length < this.columnNumber) {
                 this.string += key.toLowerCase();
                 this.updateGridText();
