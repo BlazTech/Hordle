@@ -33,11 +33,15 @@ class Grid {
         this.listOfRows = [];
     }
     //obnavljanje teksta u gridu
-    updateGridText(string, currentRowNumber, columnNumber) {
+    updateGridText(string, specialChars, currentRowNumber, columnNumber) {
         for (let i=0; i < columnNumber; i++) {
             if (i < string.length) {
                 const child = this.listOfRows[currentRowNumber][i].querySelector(".letter-square");
-                child.innerText = string[i];
+                if (Object.values(specialChars).includes(string[i])) {
+                    child.innerText = Object.keys(specialChars).find(key => specialChars[key] === string[i]);
+                } else {
+                    child.innerText = string[i];
+                }
             } else {
                 const child = this.listOfRows[currentRowNumber][i].querySelector(".letter-square");
                 child.innerText = "";
