@@ -37,6 +37,7 @@ class Grid {
         for (let i=0; i < columnNumber; i++) {
             if (i < string.length) {
                 const child = this.listOfRows[currentRowNumber][i].querySelector(".letter-square");
+                //prikaz specijalnog znaka
                 if (Object.values(specialChars).includes(string[i])) {
                     child.innerText = Object.keys(specialChars).find(key => specialChars[key] === string[i]);
                 } else {
