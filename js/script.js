@@ -113,11 +113,6 @@ class Hordle {
             key = this.specialChars[key];
         }
 
-        console.log(Object.values(this.specialChars));
-        
-        console.log(typeof key);
-        console.log(key);
-
         if (this.abc.split(" ").includes(key) || Object.values(this.specialChars).includes(key)) {
             if (this.string.length < this.columnNumber) {
                 this.string += key.toLowerCase();
