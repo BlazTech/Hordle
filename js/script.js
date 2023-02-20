@@ -5,7 +5,7 @@ class Hordle {
         this.addEventListener = false;
 
         this.language = "croatian";
-        this.abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";
+        this.abc = "abcčćdđefghijklmnoprsštuvzžABCČĆDĐEFGHIJKLMNOPRSŠTUVZŽ";    //REMOVE QQVGA
         this.mainWord = undefined;
         this.string = "";
         this.state = "playing";
