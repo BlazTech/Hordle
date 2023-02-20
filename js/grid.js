@@ -1,4 +1,5 @@
 class Grid {
+    //blazgay
     constructor() {
         this.main = document.querySelector("main");
         this.grid = document.createElement("div"); 
