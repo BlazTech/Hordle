@@ -30,6 +30,8 @@ html {
 body {
     display: flex;
     flex-direction: column;
+    background-image: url("https://i.imgur.com/HehHc6i.jpg");
+    
 }
 /* body */
 header p {
