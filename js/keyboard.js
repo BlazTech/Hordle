@@ -1,3 +1,7 @@
+let kolaci = "volim jesti kolače";
+//dasdsads
+//qqvga
+
 class Keyboard {
     constructor() {
         this.main = document.querySelector("main");
@@ -25,6 +29,7 @@ class Keyboard {
                 const letterSquare = document.createElement("div");
                 letterSquare.className = "letter-square";
                 letterSquare.innerText = letter;
+                //this does not work yet
 
                 rowDiv.append(square);
                 square.append(letterSquare);
