@@ -1,3 +1,119 @@
+class Grid {
+    constructor() {
+        this.main = document.querySelector("main");
+        this.grid = document.createElement("div"); 
+        this.grid.id = "grid"; 
+        this.listOfRows = [];
+    }
+    //pravljenje i dodavanje kvadrata u listu
+    createGrid(rowNumber, columnNumber) {
+        this.grid.style.gridTemplateColumns = "repeat(" + String(columnNumber) + ", 1fr)";
+
+        let tempList = [];
+        for (let i=0; i < (rowNumber * columnNumber); i++ ) {
+            const square = document.createElement("div");
+            square.classList.add("cell", "regularbox");
+            const letterSquare = document.createElement("div");
+            letterSquare.classList.add("letter-square");
+
+            this.grid.append(square);
+            square.append(letterSquare);
+
+            tempList.push(square);
+            if (tempList.length >= columnNumber) {
+                this.listOfRows.push(tempList);
+                tempList = [];
+            }
+        }
+        this.main.append(this.grid);
+    }
+    //brisanje
+    deleteSelf() {
+        this.grid.innerHTML = "";
+        this.listOfRows = [];
+    }
+    //obnavljanje teksta u gridu
+    updateGridText(string, specialChars, currentRowNumber, columnNumber) {
+        for (let i=0; i < columnNumber; i++) {
+            if (i < string.length) {
+                const child = this.listOfRows[currentRowNumber][i].querySelector(".letter-square");
+                //prikaz specijalnog znaka
+                if (Object.values(specialChars).includes(string[i])) {
+                    child.innerText = Object.keys(specialChars).find(key => specialChars[key] === string[i]);
+                } else {
+                    child.innerText = string[i];
+                }
+            } else {
+                const child = this.listOfRows[currentRowNumber][i].querySelector(".letter-square");
+                child.innerText = "";
+            }
+        }
+    }
+    //bojanje grida
+    changeGridColors(colorClass, currentRowNumber, i) {
+        this.listOfRows[currentRowNumber][i].classList.remove("regularbox");
+        this.listOfRows[currentRowNumber][i].classList.remove("greenbox");
+        this.listOfRows[currentRowNumber][i].classList.remove("orangebox");
+        this.listOfRows[currentRowNumber][i].classList.remove("darkgreybox");
+        
+        this.listOfRows[currentRowNumber][i].classList.add(colorClass);
+    }
+}
+
+class Keyboard {
+    constructor() {
+        this.main = document.querySelector("main");
+        this.keyboard = document.createElement("div");
+        this.keyboard.id = "keyboard";
+        this.listOfSquareDivs = [];
+
+    }
+    //pravljenje tastature
+    createKeyboard(keyboardLanguages, language) {
+        keyboardLanguages[language]["keyboard"].forEach(line => {
+            const rowDiv = document.createElement("div");
+            rowDiv.className = "keyboard-row";
+            this.keyboard.append(rowDiv);
+    
+            line.split(" ").forEach(letter => {
+                const square = document.createElement("div");
+                square.classList.add("cell", "click", "regularbox");
+                const letterSquare = document.createElement("div");
+                letterSquare.className = "letter-square";
+                letterSquare.innerText = letter;
+
+                rowDiv.append(square);
+                square.append(letterSquare);
+                this.listOfSquareDivs.push(square);
+            });
+        });
+        this.main.append(this.keyboard);
+    }
+    //brisanje
+    deleteSelf() {
+        this.keyboard.innerHTML = "";
+        this.listOfSquareDivs = [];
+    }
+    //promjena boje tipki
+    changeKeyColor(colorClass, letter) {
+        this.listOfSquareDivs.forEach(square => {
+            const key = square.firstElementChild;
+            if (key.innerText.toLowerCase() == letter) {
+                if ((square.classList.contains("regularbox") || square.classList.contains("orangebox")) 
+                && (square.classList.contains("orangebox") && colorClass == "darkgreybox") == false) {
+
+                    square.classList.remove("regularbox");
+                    square.classList.remove("greenbox");
+                    square.classList.remove("orangebox");
+                    square.classList.remove("darkgreybox");
+                    
+                    square.classList.add(colorClass);
+                }
+            }
+        });
+    }
+}
+
 class Hordle {
     constructor(grid, keyboard) {
         this.grid = grid;
