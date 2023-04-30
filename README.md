@@ -8,3 +8,6 @@ Značenje boja:
 - Tamno siva - slovo nije prisutno u riječi
 - Narančasta - slovo je prisutno u riječi, ali nije na ispravnom mjestu
 - Zelena - slovo je prisutno u riječi, nalazi se na ispravnom mjestu
+
+Mijenjanje opcija:
+- nakon igre imate mogučnost promijeniti broj redova i stupaca, odaberite brojeve u izborniku te pritisnite gumb za ponovno pokretanje igre
